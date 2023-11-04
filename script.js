@@ -17,7 +17,7 @@ $(function () {
     console.log(time);
     var text = $(this).siblings(".description").val();
     console.log(text);
-    localStorage.setItem(time, text);
+    localStorage.setItem(JSON.stringify(time), JSON.stringify(text));
   });
   //
   // TODO: Add code to apply the past, present, or future class to each time
@@ -31,20 +31,20 @@ $(function () {
     var currentHour = dayjs().hour();
     console.log(currentHour);
     $(".time-block").each(function () {
-      var currentBlockHour = $(this).attr("id").substring(5);
-      if (currentBlockHour < currentHour.toString()) {
+      var currentBlockHour = parseInt($(this).attr("id").substring(5));
+      if (currentBlockHour < currentHour) {
         $(this).addClass("past");
         $(this).removeClass("present");
         $(this).removeClass("future");
       }
 
-      if (currentBlockHour === currentHour.toString()) {
+      if (currentBlockHour === currentHour) {
         $(this).addClass("present");
         $(this).removeClass("past");
         $(this).removeClass("future");
       }
 
-      if (currentBlockHour > currentHour.toString()) {
+      if (currentBlockHour > currentHour) {
         $(this).removeClass("past");
         $(this).removeClass("present");
         $(this).addClass("future");
@@ -55,5 +55,23 @@ $(function () {
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
+  $("#hour-9 .description").val(JSON.parse(localStorage.getItem("9")));
+
+  $("#hour-10 .description").val(JSON.parse(localStorage.getItem("10")));
+
+  $("#hour-11 .description").val(JSON.parse(localStorage.getItem("11")));
+
+  $("#hour-12 .description").val(JSON.parse(localStorage.getItem("12")));
+
+  $("#hour-13 .description").val(JSON.parse(localStorage.getItem("13")));
+
+  $("#hour-14 .description").val(JSON.parse(localStorage.getItem("14")));
+
+  $("#hour-15 .description").val(JSON.parse(localStorage.getItem("15")));
+
+  $("#hour-16 .description").val(JSON.parse(localStorage.getItem("16")));
+
+  $("#hour-17 .description").val(JSON.parse(localStorage.getItem("17")));
+
   // TODO: Add code to display the current date in the header of the page.
 });
