@@ -13,7 +13,7 @@ $(function () {
   // useful when saving the description in local storage?
 
   $(".saveBtn").on("click", function () {
-    var time = $(this).parent().attr("id");
+    var time = $(this).parent().attr("id").substring(5);
     console.log(time);
     var text = $(this).siblings(".description").val();
     console.log(text);
@@ -30,21 +30,21 @@ $(function () {
   function updateTimeBlock() {
     var currentHour = dayjs().hour();
     console.log(currentHour);
-    $.each(".time-block", function () {
-      var currentBlockHour = $(this).attr(id).subString(5);
-      if (currentBlockHour < currentHour) {
+    $(".time-block").each(function () {
+      var currentBlockHour = $(this).attr("id").substring(5);
+      if (currentBlockHour < currentHour.toString()) {
         $(this).addClass("past");
         $(this).removeClass("present");
         $(this).removeClass("future");
       }
 
-      if (currentBlockHour === currentHour) {
+      if (currentBlockHour === currentHour.toString()) {
         $(this).addClass("present");
         $(this).removeClass("past");
         $(this).removeClass("future");
       }
 
-      if (currentBlockHour > currentHour) {
+      if (currentBlockHour > currentHour.toString()) {
         $(this).removeClass("past");
         $(this).removeClass("present");
         $(this).addClass("future");
